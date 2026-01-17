@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="460.0" prefWidth="492.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatsocket.ChatController">
+<?import javafx.scene.shape.Polygon?>
+<AnchorPane prefHeight="561.0" prefWidth="568.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatsocket.ChatController">
 
     <!-- Título -->
     <Label alignment="CENTER" layoutX="20" layoutY="20" prefWidth="452" text="CHAT SOCKETS">
@@ -15,18 +16,19 @@
     </Label>
 
     <!-- Área de mensajes -->
-    <TextArea fx:id="textAreaMessages" editable="false" layoutX="20" layoutY="70" prefHeight="254.0" prefWidth="413.0" style="-fx-border-color: black; -fx-border-width: 4;" wrapText="true" />
+    <TextArea fx:id="textAreaMessages" editable="false" layoutX="35.0" layoutY="68.0" prefHeight="326.0" prefWidth="458.0" style="-fx-border-color: black; -fx-border-width: 4;" wrapText="true" />
 
     <!-- Imagen -->
-    <ImageView fitHeight="40" fitWidth="40" layoutX="433.0" layoutY="330.0" preserveRatio="true">
+    <ImageView fitHeight="40" fitWidth="40" layoutX="493.0" layoutY="394.0" preserveRatio="true">
         <image>
             <Image url="@carita.png" />
         </image>
     </ImageView>
 
+    <TextField fx:id="textFieldMessage" layoutX="88.0" layoutY="470.0" prefHeight="30" prefWidth="260" promptText="Escribe tu mensaje..." style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-prompt-text-fill: #888888; -fx-border-color: #000000; -fx-padding: 5; -fx-border-width: 2;" />
 
-
-
+    <!-- Botón -->
+    <Button fx:id="buttonSend" layoutX="371.0" layoutY="470.0" prefHeight="30" prefWidth="80" style="             -fx-background-color: #000000;             -fx-text-fill: #ffffff;             -fx-font-weight: bold;             -fx-background-radius: 5;         " text="Enviar" />
 
 
 </AnchorPane>
