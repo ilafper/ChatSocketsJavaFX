@@ -3,32 +3,42 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.shape.Polygon?>
 <AnchorPane prefHeight="561.0" prefWidth="568.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chatsocket.ChatController">
 
-    <!-- Título -->
-    <Label alignment="CENTER" layoutX="20" layoutY="20" prefWidth="452" text="CHAT SOCKETS">
+    <!--Titulo -->
+    <Label alignment="CENTER" layoutX="161.0" layoutY="25.0" prefHeight="40.0" prefWidth="268.0" text="BLABBERING CHAT" textAlignment="CENTER">
         <font>
-            <Font size="28" />
+            <Font name="System Bold" size="28.0" />
         </font>
     </Label>
 
-    <!-- Área de mensajes -->
-    <TextArea fx:id="textAreaMessages" editable="false" layoutX="35.0" layoutY="68.0" prefHeight="326.0" prefWidth="458.0" style="-fx-border-color: black; -fx-border-width: 4;" wrapText="true" />
+    <!-- bloque donde mostraran los mensajes -->
+    <TextArea fx:id="textAreaMessages" editable="false" layoutX="43.0" layoutY="75.0" prefHeight="326.0" prefWidth="458.0" style="-fx-border-color: black; -fx-border-width: 6;" wrapText="true" />
 
     <!-- Imagen -->
-    <ImageView fitHeight="40" fitWidth="40" layoutX="493.0" layoutY="394.0" preserveRatio="true">
+    <ImageView fitHeight="40" fitWidth="40" layoutX="501.0" layoutY="408.0" preserveRatio="true">
         <image>
             <Image url="@carita.png" />
         </image>
     </ImageView>
 
-    <TextField fx:id="textFieldMessage" layoutX="88.0" layoutY="470.0" prefHeight="30" prefWidth="260" promptText="Escribe tu mensaje..." style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-prompt-text-fill: #888888; -fx-border-color: #000000; -fx-padding: 5; -fx-border-width: 2;" />
+    <!-- input para escribir los mensakes-->
+    <TextField fx:id="textFieldMessage" layoutX="98.0" layoutY="435.0" prefHeight="30" prefWidth="260" promptText="Escribe tu mensaje..." style="-fx-background-color: #ffffff; -fx-text-fill: #000000; -fx-prompt-text-fill: #888888; -fx-border-color: #000000; -fx-padding: 5; -fx-border-width: 2;" />
 
-    <!-- Botón -->
-    <Button fx:id="buttonSend" layoutX="371.0" layoutY="470.0" prefHeight="30" prefWidth="80" style="             -fx-background-color: #000000;             -fx-text-fill: #ffffff;             -fx-font-weight: bold;             -fx-background-radius: 5;         " text="Enviar" />
+    <!-- Boton enviar mensaje-->
+    <Button fx:id="enviarBoton" layoutX="370.0" layoutY="435.0" prefHeight="30" prefWidth="80" style="-fx-background-color: #000000;-fx-text-fill: #ffffff;-fx-font-weight: bold;             -fx-background-radius: 5;         " text="Enviar" />
+
+
+    <Polygon layoutX="490.0" layoutY="455.0" points="21.0, -34.0, -19.0, -54.0, 0.0, -60.0" stroke="BLACK" strokeType="INSIDE" />
+
+    <!-- boton nueva pestaña -->
+    <Button fx:id="nuevaVentana" layoutX="43.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: black;" text="+Nueva" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font></Button>
 
 
 </AnchorPane>

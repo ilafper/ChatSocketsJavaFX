@@ -19,9 +19,12 @@ public class EchoServerMultihilo {
     // AtomicInteger: Variable thread-safe para contar clientes sin sincronización explícita
     private static final AtomicInteger clientesConectados = new AtomicInteger(0);
 
-
+    // lista clientes
     public static List<PrintWriter> listaClientes = new CopyOnWriteArrayList<>();
 
+
+
+    //lista historial de mensajes
     public static List<String> historialMensajes = new CopyOnWriteArrayList<>();
 
 
@@ -32,10 +35,13 @@ public class EchoServerMultihilo {
         // - Los hilos permanecen vivos esperando nuevas tareas
         // - Si todos están ocupados, las tareas esperan en una cola interna
         // - Más eficiente que crear un hilo nuevo por cada cliente
+
+        //numero maximo de clientes
         ExecutorService pool = Executors.newFixedThreadPool(MAX_CLIENTES);
 
         System.out.println("Servidor multihilo iniciado en puerto " + PUERTO);
         System.out.println("📊 Pool de hilos: " + MAX_CLIENTES);
+        System.out.println("Servidor funcionando ");
 
         // try-with-resources: Garantiza cierre automático del ServerSocket al finalizar
         // ServerSocket: Socket pasivo que escucha conexiones entrantes en un puerto
@@ -66,6 +72,9 @@ public class EchoServerMultihilo {
                 // - Si todos están ocupados, la tarea espera en cola
                 // - El hilo principal (main) no se bloquea, vuelve a accept() inmediatamente
                 // - Esto permite aceptar nuevas conexiones mientras se atienden las existentes
+
+
+
                 // ManejadorClienteMultihilo: Runnable que encapsula la lógica de atención al cliente
                 pool.execute(new ManejadorClienteMultihilo(clienteSocket, numCliente));
 

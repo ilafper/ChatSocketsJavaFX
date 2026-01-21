@@ -41,6 +41,8 @@ public class ManejadorClienteMultihilo implements Runnable {
      * - PrintWriter se crea con autoflush=true para que cada println se envíe
      *   inmediatamente sin necesidad de llamar a flush() explícitamente.
      */
+
+
     @Override
     public void run() {
         PrintWriter salida = null;
@@ -52,15 +54,16 @@ public class ManejadorClienteMultihilo implements Runnable {
             // Agregar cliente a la lista global
             EchoServerMultihilo.listaClientes.add(salida);
 
-
+            // ver cada mensaje del historial y mostrarlos
             for (String cada_mensaje : EchoServerMultihilo.historialMensajes) {
                 salida.println(cada_mensaje);
             }
 
-            // Mensaje de bienvenida
+
 
 
             String mensaje;
+            // que tenga un conenido el mensaje
             while ((mensaje = entrada.readLine()) != null) {
                 System.out.println("[Usuario #" + numeroCliente + "] " + mensaje);
 
@@ -75,7 +78,9 @@ public class ManejadorClienteMultihilo implements Runnable {
 
                 // Si el cliente se desconecta
                 if (mensaje.equalsIgnoreCase("salir")) {
+                    //recorrer los clientes conectados
                     for (PrintWriter cliente : EchoServerMultihilo.listaClientes) {
+                        //mesaje de despedida
                         cliente.println("👋 Usuario #" + numeroCliente + " se ha desconectado");
                     }
                     break;
