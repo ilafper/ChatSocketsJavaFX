@@ -59,9 +59,6 @@ public class ManejadorClienteMultihilo implements Runnable {
                 salida.println(cada_mensaje);
             }
 
-
-
-
             String mensaje;
             // que tenga un conenido el mensaje
             while ((mensaje = entrada.readLine()) != null) {
@@ -74,6 +71,7 @@ public class ManejadorClienteMultihilo implements Runnable {
 
 
                 // Guardar mensaje en historial
+
                 EchoServerMultihilo.historialMensajes.add("[Usuario #" + numeroCliente + "] " + mensaje);
 
                 // Si el cliente se desconecta

@@ -47,7 +47,6 @@ public class ChatController {
 
                 String mensaje;
 
-
                 while ((mensaje = cliente.recibirMensaje()) != null) {
                     String finalMensaje = mensaje;
 

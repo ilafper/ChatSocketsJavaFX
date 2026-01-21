@@ -16,13 +16,13 @@ public class EchoServerMultihilo {
 
     private static final int MAX_CLIENTES = 10;
 
+
+
     // AtomicInteger: Variable thread-safe para contar clientes sin sincronización explícita
     private static final AtomicInteger clientesConectados = new AtomicInteger(0);
 
     // lista clientes
     public static List<PrintWriter> listaClientes = new CopyOnWriteArrayList<>();
-
-
 
     //lista historial de mensajes
     public static List<String> historialMensajes = new CopyOnWriteArrayList<>();
@@ -48,6 +48,7 @@ public class EchoServerMultihilo {
         // - Vincula (bind) el puerto 8080 a esta aplicación
         // - Solo escucha, no establece conexiones por sí mismo
         // - Puede lanzar IOException si el puerto ya está en uso
+
         try (ServerSocket serverSocket = new ServerSocket(PUERTO)) {
 
             // Bucle infinito: El servidor permanece activo aceptando nuevas conexiones

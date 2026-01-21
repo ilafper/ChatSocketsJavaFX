@@ -8,8 +8,6 @@ public class ClienteSocket {
     private BufferedReader entrada;
     private PrintWriter salida;
 
-
-
     public void conectar(String host, int puerto) throws IOException {
         socket = new Socket(host, puerto);
         entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
