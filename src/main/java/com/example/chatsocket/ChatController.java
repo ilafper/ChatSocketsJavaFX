@@ -12,20 +12,23 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ChatController {
-
+    // donde se mostraran los mensajes de todos
     @FXML
     private TextArea textAreaMessages;
-
+    // input en donde escribes el mensaje
     @FXML
     private TextField textFieldMessage;
-
+    // boton para la nueva ventana
     @FXML
      private Button nuevaVentana;
-
+    // boton para enviar el mensaje
     @FXML
     private Button enviarBoton;
-
+    // socket para el clinete
     private ClienteSocket cliente;
+
+    @FXML
+    private Button modalGrupo;
 
 
 
@@ -39,14 +42,16 @@ public class ChatController {
         // Hilo para recibir mensajes del servidor
         new Thread(() -> {
             try {
-                cliente.conectar("localhost", 8080);
 
-                // Mensaje inicial en la UI
+                cliente.conectar("localhost", 8080);
+                // Mensaje inicial en la interfaz, en el contenedor de mensajes
+
                 Platform.runLater(() -> textAreaMessages.appendText("✅ Conectado al servidor\n"));
 
 
                 String mensaje;
 
+                //mientras el mensaje no sea null envia el mensaje
                 while ((mensaje = cliente.recibirMensaje()) != null) {
                     String finalMensaje = mensaje;
 
@@ -57,7 +62,8 @@ public class ChatController {
             } catch (Exception error) {
                 Platform.runLater(() -> textAreaMessages.appendText("❌ Error: " + error.getMessage() + "\n"));
             }
-        }).start();
+
+        }).start(); // inicia el hilo de cada cliente
 
         // Enviar mensaje
         enviarBoton.setOnAction(e -> {
@@ -79,6 +85,23 @@ public class ChatController {
                 throw new RuntimeException(ex);
             }
             stage.setTitle("Chat Cliente");
+            stage.setScene(scene);
+            stage.show();
+        });
+
+        modalGrupo.setOnAction(e->{
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("crear_unirse.fxml"));
+            Scene scene = null;
+
+            try {
+                scene = new Scene(fxmlLoader.load(), 350, 200);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+
+            stage.setTitle("modal");
             stage.setScene(scene);
             stage.show();
         });

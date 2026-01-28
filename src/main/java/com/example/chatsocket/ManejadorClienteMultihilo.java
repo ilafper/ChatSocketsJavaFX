@@ -16,6 +16,13 @@ import java.util.concurrent.*;
  * - Detectar la palabra especial "salir" para terminar la conexión.
  * - Gestionar correctamente los recursos (streams y socket).
  */
+
+/*Cada vez que se crea un cliente se crea uno de estos, crea el socket (tubo de conexion y numero de identificador del cliente)
+*
+*
+* */
+
+
 public class ManejadorClienteMultihilo implements Runnable {
     // Socket para comunicarse con el cliente asignado a este manejador
     private final Socket socket;
@@ -26,10 +33,14 @@ public class ManejadorClienteMultihilo implements Runnable {
      * @param socket Socket ya conectado al cliente
      * @param numeroCliente Número identificador del cliente (para logs)
      */
+
+
     public ManejadorClienteMultihilo(Socket socket, int numeroCliente) {
         this.socket = socket;
         this.numeroCliente = numeroCliente;
+
     }
+
     /**
      * Punto de entrada del hilo: gestiona la comunicación con el cliente.
      *
@@ -45,11 +56,13 @@ public class ManejadorClienteMultihilo implements Runnable {
 
     @Override
     public void run() {
+        // variable vacia para los mesajes de salida del server
         PrintWriter salida = null;
 
         try (BufferedReader entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-
+            //variable para los mensajes de salida
             salida = new PrintWriter(socket.getOutputStream(), true);
+            //memsaje de bienvenida inicial al entrar
             salida.println("¡Bienvenido! Eres el cliente #" + numeroCliente);
             // Agregar cliente a la lista global
             EchoServerMultihilo.listaClientes.add(salida);
@@ -59,19 +72,21 @@ public class ManejadorClienteMultihilo implements Runnable {
                 salida.println(cada_mensaje);
             }
 
+            //variable para guardar los mnensajes
+
             String mensaje;
-            // que tenga un conenido el mensaje
+
+           // se ejecuta mientras el mnesaje no estea vacio
             while ((mensaje = entrada.readLine()) != null) {
+                //muestra el mensaje del cliente(Nºcliente + su mensaje)
                 System.out.println("[Usuario #" + numeroCliente + "] " + mensaje);
 
-                // Reenviar a todos los clientes conectados
+                // se reenvia ese mensaje a todos los clientes
                 for (PrintWriter cliente : EchoServerMultihilo.listaClientes) {
                     cliente.println("[Usuario #" + numeroCliente + "] " + mensaje);
                 }
 
-
                 // Guardar mensaje en historial
-
                 EchoServerMultihilo.historialMensajes.add("[Usuario #" + numeroCliente + "] " + mensaje);
 
                 // Si el cliente se desconecta

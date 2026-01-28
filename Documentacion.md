@@ -61,7 +61,6 @@ El objetivo principal de **ChatSocket** es:
     * Puede abrir múltiples ventanas para simular varios usuarios en el mismo equipo.
 
 * **Interfaz Gráfica (JavaFX):**
-
     * `TextArea` para mostrar mensajes.
     * `TextField` para escribir mensajes.
     * Botones para enviar mensajes y abrir nuevas ventanas de chat.
@@ -84,4 +83,6 @@ com.example.chatsocket/
 ├── hello-view.fxml             # Vista principal de chat
 └── modalNombre.fxml            # (Opcional) Modal para ingresar nombre de usuario
 ```
+
+## 
 
